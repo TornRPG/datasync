@@ -19,7 +19,7 @@ public final class Datapacksync extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getCommand("copyS").setExecutor(new copy());
+        getCommand("copy").setExecutor(new copy());
         getCommand("download").setExecutor(new download());
         serverpath = getServer().getWorldContainer().getAbsolutePath();
         worlds = getServer().getWorlds();
