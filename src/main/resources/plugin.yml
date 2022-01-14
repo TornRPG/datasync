@@ -1,0 +1,16 @@
+name: Datapacksync
+version: '${project.version}'
+main: de.notjansel.datapacksync.Datapacksync
+api-version: 1.17
+prefix: DATASYNC
+authors: [ NotJansel ]
+description: Update Datapacks per Command!
+website: https://www.notjansel.de
+
+commands:
+  download:
+  copy:
+
+permissions:
+  datapacksync.use:
+    description: General Permission
