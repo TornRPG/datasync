@@ -2,7 +2,7 @@
 Download Datapacks per Link and copy them directly into the Datapack Directory
 
 Housemade by myself to make the Datapack Development easier for servers!
-
+Also used on the MCTorn Server for easier Datapack Development (@StonkDragon doesnt want always to DM a Admin with FTP Access lmao)
 
 
 ## Commands
