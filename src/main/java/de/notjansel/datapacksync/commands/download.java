@@ -40,14 +40,14 @@ public class download implements CommandExecutor {
             return true;
         }
         try {
-            down(args[1], args[0], (Player) sender);
+            down(args[1], args[0], sender);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return true;
     }
 
-    public void down(String url, String filename, Player player) throws IOException{
+    public void down(String url, String filename, CommandSender sender) throws IOException{
         Path dirPath = Paths.get(Datapacksync.serverpath + "/downloads/");
         try{
             if (!Files.exists(dirPath)) {
@@ -59,7 +59,7 @@ public class download implements CommandExecutor {
         }
         InputStream inputStream = new URL(url).openStream();
         Files.copy(inputStream, Paths.get(Datapacksync.serverpath + "/downloads/" + filename), StandardCopyOption.REPLACE_EXISTING);
-        player.sendMessage(ChatColor.GREEN + "Download complete. To copy the Datapack, type /copy <Filename>");
+        sender.sendMessage(ChatColor.GREEN + "Download complete. To copy the Datapack, type /copy <Filename>");
 
     }
 }
