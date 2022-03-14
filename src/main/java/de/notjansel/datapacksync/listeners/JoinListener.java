@@ -23,7 +23,7 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) throws IOException, ParseException {
         if (event.getPlayer().hasPermission("datapacksync.use")) {
-            InputStream inputStream = new URL("https://cloud.notjansel.de/index.php/s/p6SJswZEPT3YgrZ/download/version.json").openStream();
+            InputStream inputStream = new URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json").openStream();
             Files.copy(inputStream, Paths.get(Datapacksync.serverpath + "/downloads/version.json"), StandardCopyOption.REPLACE_EXISTING);
             Object obj;
             obj = new JSONParser().parse(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json")));

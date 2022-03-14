@@ -6,7 +6,7 @@
 
     <groupId>de.notjansel</groupId>
     <artifactId>datapacksync</artifactId>
-    <version>0.25.1</version>
+    <version>0.25.2</version>
     <packaging>jar</packaging>
 
     <name>Datapacksync</name>

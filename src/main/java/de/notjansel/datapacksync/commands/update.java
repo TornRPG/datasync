@@ -23,7 +23,7 @@ public class update implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         InputStream inputStream = null;
         try {
-            inputStream = new URL("https://cloud.notjansel.de/index.php/s/p6SJswZEPT3YgrZ/download/version.json").openStream();
+            inputStream = new URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json").openStream();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -53,7 +53,7 @@ public class update implements CommandExecutor {
         String version = (String) jsonObject.get("latest");
         if (!version.equals(Datapacksync.version)) {
             try {
-                inputStream = new URL("https://cloud.notjansel.de/index.php/s/q7dYHqTw7k5LRpP/download?path=%2F&files=datapacksync-" + version + ".jar").openStream();
+                inputStream = new URL("https://github.com/TornRPG/datasync/releases/download/" + version + "/datapacksync-" + version + ".jar").openStream();
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;

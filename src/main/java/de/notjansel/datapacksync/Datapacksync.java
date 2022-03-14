@@ -18,7 +18,7 @@ public final class Datapacksync extends JavaPlugin {
     public static List<World> worlds;
     public static DatapackManager datapackManager;
     public static Server server;
-    public static String version = "0.25.1";
+    public static String version = "0.25.2";
 
     @Override
     public void onEnable() {
