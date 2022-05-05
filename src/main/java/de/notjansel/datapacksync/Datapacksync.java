@@ -28,7 +28,7 @@ public final class Datapacksync extends JavaPlugin {
     public static List<World> worlds;
     public static DatapackManager datapackManager;
     public static Server server;
-    public static String version = "0.30.0";
+    public static final String version = "0.30.1";
 
     @Override
     public void onEnable() {
@@ -46,10 +46,10 @@ public final class Datapacksync extends JavaPlugin {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        removeoldfiles();
+        remorselessness_against_files();
     }
 
-    private void removeoldfiles() {
+    private void remorselessness_against_files() {
         for (File file : new File(serverpath + "/plugins").listFiles()) {
             if (file.getName().contains("datapacksync")) {
                 if (!file.getName().contains(version)) {
@@ -65,6 +65,12 @@ public final class Datapacksync extends JavaPlugin {
             URL fetchsite = new URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json");
             FileUtils.copyURLToFile(fetchsite, file);
         }
+    }
+
+    public static void downloadFile(String url, String path) throws MalformedURLException, IOException {
+        File file = new File(path);
+        URL fetchsite = new URL(url);
+        FileUtils.copyURLToFile(fetchsite, file);
     }
 
     @Override

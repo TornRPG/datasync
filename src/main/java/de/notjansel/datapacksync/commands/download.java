@@ -21,7 +21,7 @@ import java.nio.file.StandardCopyOption;
 public class download implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!sender.hasPermission("datapacksync.use")) {
+        if (!sender.hasPermission("datapacksync.use")) {
             sender.sendMessage("You do not have the Permission to use this.");
             return true;
         }
@@ -47,14 +47,14 @@ public class download implements CommandExecutor {
         return true;
     }
 
-    public void down(String url, String filename, CommandSender sender) throws IOException{
+    public void down(String url, String filename, CommandSender sender) throws IOException {
         Path dirPath = Paths.get(Datapacksync.serverpath + "/downloads/");
-        try{
+        try {
             if (!Files.exists(dirPath)) {
                 Files.createDirectory(dirPath);
                 Bukkit.getConsoleSender().sendMessage("Directory Created");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage("Error while Creating Directory:" + e.getMessage());
         }
         InputStream inputStream = new URL(url).openStream();

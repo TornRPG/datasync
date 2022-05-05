@@ -22,6 +22,10 @@ import java.nio.file.StandardCopyOption;
 public class update implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+        if(!commandSender.hasPermission("datapacksync.use")) {
+            commandSender.sendMessage("You do not have the Permission to use this.");
+            return true;
+        }
         DownloadThread thread = new DownloadThread(commandSender);
         thread.start();
         return true;

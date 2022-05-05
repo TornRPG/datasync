@@ -1,19 +1,15 @@
 package de.notjansel.datapacksync.threading;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import de.notjansel.datapacksync.Datapacksync;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 public class DownloadThread extends Thread{
 
@@ -26,44 +22,23 @@ public class DownloadThread extends Thread{
     @Override
     public void run() {
         commandSender.sendMessage("Starting update... (The server may lag)");
-        InputStream inputStream = null;
         try {
-            inputStream = new URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json").openStream();
+            Datapacksync.downloadFile("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json", Datapacksync.serverpath + "/downloads/version.json");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+        JsonObject obj;
         try {
-            Files.copy(inputStream, Paths.get(Datapacksync.serverpath + "/downloads/version.json"), StandardCopyOption.REPLACE_EXISTING);
+            obj = JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).getAsJsonObject();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        Object obj;
-        try {
-            obj = new JSONParser().parse(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-        try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JSONObject jsonObject = (JSONObject) obj;
-        String version = (String) jsonObject.get("latest");
+        String version = obj.get("latest").getAsString();
         if (!version.equals(Datapacksync.version)) {
             try {
-                inputStream = new URL("https://github.com/TornRPG/datasync/releases/download/" + version + "/datapacksync-" + version + ".jar").openStream();
+                Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/" + version + "/datapacksync-" + version + ".jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar");
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                Files.copy(inputStream, Paths.get(Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar"), StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
             commandSender.sendMessage(ChatColor.GOLD + "Reloading Server to update Datapacksync to version " + version + " and remove the old file.");
             Bukkit.getServer().reload();
