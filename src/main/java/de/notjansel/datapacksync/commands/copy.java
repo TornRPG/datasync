@@ -1,10 +1,12 @@
 package de.notjansel.datapacksync.commands;
 
 import de.notjansel.datapacksync.Datapacksync;
+import de.notjansel.datapacksync.threading.CopyThread;
 import io.papermc.paper.datapack.Datapack;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.*;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,48 +18,11 @@ import java.util.List;
 import static de.notjansel.datapacksync.Datapacksync.*;
 
 public class copy implements CommandExecutor, TabCompleter {
-    FileInputStream fis = null;
-    FileOutputStream fos = null;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!sender.hasPermission("datapacksync.use")) {
-            sender.sendMessage("You do not have the Permission to use this.");
-            return true;
-        }
-        String datapackpath = "";
-        for (World world : worlds) {
-            if (Files.exists(Paths.get(world.getWorldFolder().getAbsolutePath() + "/datapacks/"))) {
-                datapackpath = world.getWorldFolder().getAbsolutePath() + "/datapacks/";
-            }
-        }
-        try {
-            fis = new FileInputStream(Datapacksync.serverpath + "/downloads/" + args[0]);
-
-            fos = new FileOutputStream(datapackpath + args[0]);
-            int c;
-            while ((c = fis.read()) != -1) {
-                fos.write(c);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            sender.sendMessage(ChatColor.GREEN + "Copy complete. To enable, first /datapack list, so the Server pickups the Datapack, then /datapack enable <Datapack>");
-        }
+        CopyThread thread = new CopyThread(sender, args);
+        thread.start();
         return true;
     }
 

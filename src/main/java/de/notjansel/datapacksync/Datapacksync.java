@@ -4,8 +4,10 @@ import de.notjansel.datapacksync.commands.copy;
 import de.notjansel.datapacksync.commands.download;
 import de.notjansel.datapacksync.commands.update;
 import de.notjansel.datapacksync.listeners.JoinListener;
+import de.notjansel.datapacksync.threading.UpdateCheckerThread;
 import io.papermc.paper.datapack.DatapackManager;
 import org.apache.commons.io.FileUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,7 +30,7 @@ public final class Datapacksync extends JavaPlugin {
     public static List<World> worlds;
     public static DatapackManager datapackManager;
     public static Server server;
-    public static final String version = "0.30.1";
+    public static final String version = "0.30.2";
 
     @Override
     public void onEnable() {
@@ -41,6 +43,7 @@ public final class Datapacksync extends JavaPlugin {
         worlds = getServer().getWorlds();
         datapackManager = getServer().getDatapackManager();
         server = getServer();
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new UpdateCheckerThread(), 1200, 18000);
         try {
             prepare_requisites();
         } catch (IOException e) {
@@ -59,7 +62,7 @@ public final class Datapacksync extends JavaPlugin {
         }
     }
 
-    private void prepare_requisites() throws MalformedURLException, IOException {
+    private void prepare_requisites() throws IOException {
         if (!(new File(serverpath + "/downloads/version.json").exists())) {
             File file = new File(serverpath + "downloads/version.json");
             URL fetchsite = new URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json");
@@ -67,7 +70,7 @@ public final class Datapacksync extends JavaPlugin {
         }
     }
 
-    public static void downloadFile(String url, String path) throws MalformedURLException, IOException {
+    public static void downloadFile(String url, String path) throws IOException {
         File file = new File(path);
         URL fetchsite = new URL(url);
         FileUtils.copyURLToFile(fetchsite, file);
