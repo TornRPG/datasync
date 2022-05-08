@@ -1,3 +1,4 @@
 {
-  "latest": "0.30.2"
+  "latest": "0.30.2",
+  "changelog": "Made everything multithreaded."
 }
