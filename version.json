@@ -1,4 +1,4 @@
 {
-  "latest": "0.30.2",
-  "changelog": "Made everything multithreaded."
+  "latest": "0.30.3",
+  "changelog": "Refactor everything to Kotlin (no change in the code itself)"
 }

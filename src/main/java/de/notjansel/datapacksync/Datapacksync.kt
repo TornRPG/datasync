@@ -63,7 +63,7 @@ class Datapacksync : JavaPlugin() {
         var worlds: List<World>? = null
         var datapackManager: DatapackManager? = null
         var server: Server? = null
-        const val version = "0.30.2"
+        const val version = "0.30.3"
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {
             val file = File(path)
