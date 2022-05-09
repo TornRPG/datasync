@@ -10,7 +10,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class DownloadThread(private val commandSender: CommandSender) : Thread() {
+class UpdateThread(private val commandSender: CommandSender) : Thread() {
     override fun run() {
         commandSender.sendMessage("Starting update... (The server may lag)")
         try {
@@ -24,7 +24,7 @@ class DownloadThread(private val commandSender: CommandSender) : Thread() {
             throw RuntimeException(e)
         }
         val version = obj["latest"].asString
-        if (version != Datapacksync.version) {
+        if (version != Datapacksync.version && !Datapacksync.version.endsWith("-dev")) {
             try {
                 Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
             } catch (e: IOException) {

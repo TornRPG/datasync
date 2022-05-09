@@ -22,7 +22,7 @@ class UpdateCheckerThread : Runnable {
         }
         val version = obj["latest"].asString
         val changelog = obj["changelog"].asString
-        if (version != Datapacksync.version) {
+        if (version != Datapacksync.version && !Datapacksync.version.endsWith("-dev")) {
             for (player in Bukkit.getOnlinePlayers()) {
                 if (player.hasPermission("datapacksync.use")) {
                     player.sendMessage("""§cDatapackSync Update Available. Run /update to Update the Plugin.
