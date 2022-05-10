@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.World
+import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -26,6 +27,9 @@ class Datapacksync : JavaPlugin() {
         getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
         getCommand("datasyncver")!!.setExecutor(Version())
+        config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
+        saveDefaultConfig()
+        configfile = config
         serverpath = server.worldContainer.absolutePath.replace(".", "")
         worlds = server.worlds
         datapackManager = server.datapackManager
@@ -67,9 +71,10 @@ class Datapacksync : JavaPlugin() {
         var worlds: List<World>? = null
         var datapackManager: DatapackManager? = null
         var server: Server? = null
-        var versiontype: VersionTypes = VersionTypes.DEVELOPMENT;
+        var versiontype: VersionTypes = VersionTypes.BETA;
+        lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
-        const val version = "0.30.4-dev"
+        const val version = "0.30.4-beta.1"
 
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {

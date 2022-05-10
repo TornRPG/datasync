@@ -1,4 +1,8 @@
 {
   "latest": "0.30.3",
-  "changelog": "Refactor everything to Kotlin (no change in the code itself)"
+  "changelog": "Refactor everything to Kotlin (no change in the code itself)",
+  "beta_latest": "0.30.4-beta.1",
+  "beta_changelog": null,
+  "release_candidate_version": null,
+  "release_candidate_changelog": null
 }
