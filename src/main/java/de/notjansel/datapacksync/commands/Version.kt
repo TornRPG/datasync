@@ -9,11 +9,13 @@ import org.bukkit.command.CommandSender
 
 class Version : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, s: String, args: Array<String>): Boolean {
-        sender.sendMessage("""${ChatColor.YELLOW}DatapackSync
-            Version: $version
-            Version Type: ${versiontype.toString()}
-            Author: NotJansel
-        """.trimIndent())
+        sender.sendMessage("""
+        ${ChatColor.YELLOW}DatapackSync
+        ${ChatColor.YELLOW}Version: ${ChatColor.GREEN}$version
+        ${ChatColor.YELLOW}Version Type: ${ChatColor.BLUE}${versiontype.toString()}
+        ${ChatColor.YELLOW}Author: ${ChatColor.GREEN}NotJansel
+        ${ChatColor.YELLOW}Github Repository: ${ChatColor.RED}https://github.com/TornRPG/datasync
+        """)
         return true
     }
 }

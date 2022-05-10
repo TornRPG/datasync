@@ -9,9 +9,13 @@ website: https://github.com/TornRPG/datasync
 
 commands:
   download:
+    permission: datapacksync.use
   copy:
+    permission: datapacksync.use
   update:
+    permission: datapacksync.use
   datasyncver:
+    permission: datapacksync.use
 
 permissions:
   datapacksync.use:
