@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
 import org.bukkit.Server
 import org.bukkit.World
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.io.IOException
@@ -20,12 +21,13 @@ class Datapacksync : JavaPlugin() {
         // Plugin startup logic
         server.pluginManager.registerEvents(JoinListener(), this)
         getCommand("copy")!!.setExecutor(Copy())
-        getCommand("Download")!!.setExecutor(Download())
+        getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
         serverpath = server.worldContainer.absolutePath.replace(".", "")
         worlds = server.worlds
         datapackManager = server.datapackManager
         Companion.server = server
+        plugininstance = this
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
         try {
             prepare_requisites()
@@ -55,7 +57,9 @@ class Datapacksync : JavaPlugin() {
     }
 
     override fun onDisable() {
-        // Plugin shutdown logic
+        getCommand("update")!!.setExecutor(null)
+        getCommand("copy")!!.setExecutor(null)
+        getCommand("download")!!.setExecutor(null)
     }
 
     companion object {
@@ -63,7 +67,8 @@ class Datapacksync : JavaPlugin() {
         var worlds: List<World>? = null
         var datapackManager: DatapackManager? = null
         var server: Server? = null
-        const val version = "0.30.4-dev"
+        lateinit var plugininstance: Plugin
+        const val version = "0.30.2"
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {
             val file = File(path)

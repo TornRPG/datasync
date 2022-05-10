@@ -30,7 +30,11 @@ class JoinListener : Listener {
             }
             val version = obj["latest"].asString
             val changelog = obj["changelog"].asString
-            if (version != Datapacksync.version) {
+            if (Datapacksync.version.endsWith("-dev")) {
+                event.player.sendMessage(ChatColor.AQUA.toString() + "You are running a development version of Datapacksync. Please run a Stable version to get Support. Current Stable Release: $version")
+                return;
+            }
+            if (version != Datapacksync.version && !Datapacksync.version.endsWith("-dev")) {
                 event.player.sendMessage("""
     ${ChatColor.GREEN}There's a new version of DatapackSync available!
     ${ChatColor.GOLD}To Update, run /update

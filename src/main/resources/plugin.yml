@@ -5,7 +5,7 @@ api-version: 1.18
 prefix: DATASYNC
 authors: [ NotJansel ]
 description: Update Datapacks per Command!
-website: https://www.notjansel.de
+website: https://github.com/TornRPG/datasync
 
 commands:
   download:
