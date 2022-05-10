@@ -2,9 +2,8 @@ package de.notjansel.datapacksync.threading
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.rylinaux.plugman.PlugMan
-import com.rylinaux.plugman.api.PlugManAPI
 import de.notjansel.datapacksync.Datapacksync
+import de.notjansel.datapacksync.versioning.VersionTypes
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.CommandSender
@@ -31,17 +30,17 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
             throw RuntimeException(e)
         }
         val version = obj["latest"].asString
-        if (Datapacksync.version.endsWith("-dev")) {
+        if (Datapacksync.versiontype == VersionTypes.DEVELOPMENT) {
             commandSender.sendMessage(ChatColor.DARK_RED.toString() + "Unable to update. This is a Development Version, which is meant for manual Updating.")
         }
-        if (version != Datapacksync.version && !Datapacksync.version.endsWith("-dev")) {
+        if (version != Datapacksync.version && Datapacksync.versiontype != VersionTypes.DEVELOPMENT) {
             try {
                 Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
             } catch (e: IOException) {
                 throw RuntimeException(e)
             }
-            commandSender.sendMessage(ChatColor.GOLD.toString() + "Reloading Server to update Datapacksync to version " + version + " and remove the old file.")
-            val api = PlugMan()
+            commandSender.sendMessage(ChatColor.GOLD.toString() + "Datapacksync will use version " + version + " and remove the old file on the next reload/restart (restart recommended if you have other plugins as well)")
+
 
 
         } else {

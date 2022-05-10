@@ -3,8 +3,10 @@ package de.notjansel.datapacksync
 import de.notjansel.datapacksync.commands.Copy
 import de.notjansel.datapacksync.commands.Download
 import de.notjansel.datapacksync.commands.Update
+import de.notjansel.datapacksync.commands.Version
 import de.notjansel.datapacksync.listeners.JoinListener
 import de.notjansel.datapacksync.threading.UpdateCheckerThread
+import de.notjansel.datapacksync.versioning.VersionTypes
 import io.papermc.paper.datapack.DatapackManager
 import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
@@ -23,6 +25,7 @@ class Datapacksync : JavaPlugin() {
         getCommand("copy")!!.setExecutor(Copy())
         getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
+        getCommand("datasyncver")!!.setExecutor(Version())
         serverpath = server.worldContainer.absolutePath.replace(".", "")
         worlds = server.worlds
         datapackManager = server.datapackManager
@@ -57,9 +60,6 @@ class Datapacksync : JavaPlugin() {
     }
 
     override fun onDisable() {
-        getCommand("update")!!.setExecutor(null)
-        getCommand("copy")!!.setExecutor(null)
-        getCommand("download")!!.setExecutor(null)
     }
 
     companion object {
@@ -67,8 +67,10 @@ class Datapacksync : JavaPlugin() {
         var worlds: List<World>? = null
         var datapackManager: DatapackManager? = null
         var server: Server? = null
+        var versiontype: VersionTypes = VersionTypes.DEVELOPMENT;
         lateinit var plugininstance: Plugin
-        const val version = "0.30.2"
+        const val version = "0.30.4-dev"
+
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {
             val file = File(path)

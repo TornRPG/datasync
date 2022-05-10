@@ -11,6 +11,7 @@ commands:
   download:
   copy:
   update:
+  datasyncver:
 
 permissions:
   datapacksync.use:
