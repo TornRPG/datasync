@@ -42,7 +42,11 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        val version = obj["_release_candidatelatest"].asString
+        val version = obj["release_candidate.latest"].asString
+        if (version == null) {
+            commandSender.sendMessage(ChatColor.RED.toString() + "There are no Release Candidates Available. Please Change your Update channel with /updatechannel <Update channel>")
+        }
+
         try {
             Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
         } catch (e: IOException) {
@@ -58,7 +62,7 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        val version = obj["latest"].asString
+        val version = obj["release.latest"].asString
         try {
             Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
         } catch (e: IOException) {
