@@ -2,7 +2,7 @@
   "latest": "0.30.3",
   "changelog": "Refactor everything to Kotlin (no change in the code itself)",
   "beta": {
-    "latest": "0.30.4-beta.1",
+    "latest": null,
     "changelog": null
   },
   "release_candidate": {

@@ -28,12 +28,31 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         when (Datapacksync.configfile.get("datasync.update_channel")) {
             VersionTypes.RELEASE -> { release_channel() }
             VersionTypes.RELEASE_CANDIDATE -> { release_candidate_channel() }
+            VersionTypes.BETA -> { beta_channel() }
         }
 
+        commandSender.sendMessage(ChatColor.GREEN.toString() + "You are already running the latest version of Datapacksync.")
 
+    }
 
-            commandSender.sendMessage(ChatColor.GREEN.toString() + "You are already running the latest version of Datapacksync.")
+    private fun beta_channel() {
+        val obj: JsonObject = try {
+            JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).asJsonObject
+        } catch (e: IOException) {
+            throw RuntimeException(e)
+        }
+        val version = obj["beta.latest"]
+        if (version == null) {
+            commandSender.sendMessage(ChatColor.RED.toString() + "There are no Betas Available. Please Change your Update channel with /updatechannel <Update channel>")
+        }
 
+        try {
+            Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
+        } catch (e: IOException) {
+            throw RuntimeException(e)
+        }
+        commandSender.sendMessage(ChatColor.GOLD.toString() + "Datapacksync will use version " + version + " and remove the old file on the next reload/restart (restart recommended if you have other plugins as well)")
+        return;
     }
 
     private fun release_candidate_channel() {
@@ -42,7 +61,7 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        val version = obj["release_candidate.latest"].asString
+        val version = obj["release_candidate.latest"]
         if (version == null) {
             commandSender.sendMessage(ChatColor.RED.toString() + "There are no Release Candidates Available. Please Change your Update channel with /updatechannel <Update channel>")
         }
@@ -53,7 +72,7 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
             throw RuntimeException(e)
         }
         commandSender.sendMessage(ChatColor.GOLD.toString() + "Datapacksync will use version " + version + " and remove the old file on the next reload/restart (restart recommended if you have other plugins as well)")
-
+        return;
     }
 
     fun release_channel() {
@@ -62,7 +81,7 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        val version = obj["release.latest"].asString
+        val version = obj["release.latest"]
         try {
             Datapacksync.downloadFile("https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar", Datapacksync.serverpath + "/plugins/datapacksync-" + version + ".jar")
         } catch (e: IOException) {

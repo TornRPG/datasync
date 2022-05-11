@@ -1,9 +1,6 @@
 package de.notjansel.datapacksync
 
-import de.notjansel.datapacksync.commands.Copy
-import de.notjansel.datapacksync.commands.Download
-import de.notjansel.datapacksync.commands.Update
-import de.notjansel.datapacksync.commands.Version
+import de.notjansel.datapacksync.commands.*
 import de.notjansel.datapacksync.listeners.JoinListener
 import de.notjansel.datapacksync.threading.UpdateCheckerThread
 import de.notjansel.datapacksync.versioning.VersionTypes
@@ -27,6 +24,7 @@ class Datapacksync : JavaPlugin() {
         getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
         getCommand("datasyncver")!!.setExecutor(Version())
+        getCommand("updatechannel")!!.setExecutor(UpdateChannel())
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
         saveDefaultConfig()
         configfile = config
@@ -71,10 +69,10 @@ class Datapacksync : JavaPlugin() {
         var worlds: List<World>? = null
         var datapackManager: DatapackManager? = null
         var server: Server? = null
-        var versiontype: VersionTypes = VersionTypes.BETA;
+        var versiontype: VersionTypes = VersionTypes.DEVELOPMENT;
         lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
-        const val version = "0.30.4-beta.1"
+        const val version = "0.30.4-dev"
 
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {
