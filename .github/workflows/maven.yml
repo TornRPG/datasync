@@ -24,3 +24,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    # Upload a single file artifact 
+     - name: 'Upload artifact' 
+       uses: ./ 
+       with: 
+         name: 'Artifact-A' 
+         path: target/Datapacksync-?.jar
