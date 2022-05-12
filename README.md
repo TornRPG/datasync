@@ -16,3 +16,7 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 /updatechannel [channel] - Change the channel to recieve updates from, or retrieve the current channel.
 
 /datasyncver - retrieve the current version and info of the plugin.
+  
+  
+### Info
+  This Project is licensed under the LGPL-3.0 License.
