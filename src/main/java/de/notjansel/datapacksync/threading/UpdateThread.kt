@@ -11,7 +11,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class UpdateThread(private val commandSender: CommandSender) : Thread() {
+class UpdateThread(val commandSender: CommandSender) : Thread() {
     override fun run() {
         val target: Plugin
         commandSender.sendMessage("Starting update... (The server may lag)")
@@ -82,7 +82,7 @@ class UpdateThread(private val commandSender: CommandSender) : Thread() {
         }
     }
 
-    fun release_channel() {
+    private fun release_channel() {
         val obj: JsonObject = try {
             JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).asJsonObject
         } catch (e: IOException) {
