@@ -3,11 +3,13 @@
   "changelog": "Refactor everything to Kotlin (no change in the code itself)",
   "beta": {
     "latest": null,
-    "changelog": null
+    "changelog": null,
+    "release_instead": true
   },
   "release_candidate": {
     "latest": null,
-    "changelog": null
+    "changelog": null,
+    "release_instead": true
   },
   "release": {
     "latest": "0.30.3",

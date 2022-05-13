@@ -11,7 +11,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class UpdateThread(val commandSender: CommandSender) : Thread() {
+class UpdateThread(private val commandSender: CommandSender) : Thread() {
     override fun run() {
         val target: Plugin
         commandSender.sendMessage("Starting update... (The server may lag)")
@@ -21,26 +21,32 @@ class UpdateThread(val commandSender: CommandSender) : Thread() {
             throw RuntimeException(e)
         }
         when (Datapacksync.configfile.get("datasync.update_channel")) {
-            VersionTypes.RELEASE -> { release_channel() }
-            VersionTypes.RELEASE_CANDIDATE -> { release_candidate_channel() }
-            VersionTypes.BETA -> { beta_channel() }
+            VersionTypes.RELEASE -> { releaseChannel() }
+            VersionTypes.RELEASE_CANDIDATE -> { releaseCandidateChannel() }
+            VersionTypes.BETA -> { betaChannel() }
         }
 
         commandSender.sendMessage(ChatColor.GREEN.toString() + "You are already running the latest version of Datapacksync.")
 
     }
 
-    private fun beta_channel() {
+    private fun betaChannel() {
         val obj: JsonObject = try {
             JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).asJsonObject
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
         val version = obj["beta.latest"]
+        val releaseinstead = obj["beta.release_instead"].asBoolean
         if (version == null) {
             commandSender.sendMessage(ChatColor.RED.toString() + "There are no Betas Available. Please Change your Update channel with /updatechannel <Update channel>")
         }
-        if (version.asString != Datapacksync.version) {
+        if (releaseinstead) {
+            commandSender.sendMessage(ChatColor.LIGHT_PURPLE.toString() + "Downloading latest Release instead...")
+            releaseChannel()
+            return;
+        }
+        if (version.asString != Datapacksync.version && !releaseinstead) {
             try {
                 Datapacksync.downloadFile(
                     "https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar",
@@ -56,7 +62,7 @@ class UpdateThread(val commandSender: CommandSender) : Thread() {
         }
     }
 
-    private fun release_candidate_channel() {
+    private fun releaseCandidateChannel() {
         val obj: JsonObject = try {
             JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).asJsonObject
         } catch (e: IOException) {
@@ -82,7 +88,7 @@ class UpdateThread(val commandSender: CommandSender) : Thread() {
         }
     }
 
-    private fun release_channel() {
+    private fun releaseChannel() {
         val obj: JsonObject = try {
             JsonParser.parseString(Files.readString(Paths.get(Datapacksync.serverpath + "/downloads/version.json"))).asJsonObject
         } catch (e: IOException) {

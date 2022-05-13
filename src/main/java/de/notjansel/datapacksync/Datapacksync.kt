@@ -38,14 +38,14 @@ class Datapacksync : JavaPlugin() {
             Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
         }
         try {
-            prepare_requisites()
+            prepareRequisites()
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        remorselessness_against_files()
+        remorselessnessAgainstFiles()
     }
 
-    private fun remorselessness_against_files() {
+    private fun remorselessnessAgainstFiles() {
         for (file in File(serverpath + "/plugins").listFiles()) {
             if (file.name.contains("datapacksync")) {
                 if (!file.name.contains(version)) {
@@ -56,7 +56,7 @@ class Datapacksync : JavaPlugin() {
     }
 
     @Throws(IOException::class)
-    private fun prepare_requisites() {
+    private fun prepareRequisites() {
         if (!File(serverpath + "/downloads/version.json").exists()) {
             val file = File(serverpath + "downloads/version.json")
             val fetchsite = URL("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json")
