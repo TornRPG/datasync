@@ -1,14 +1,13 @@
 package de.notjansel.datapacksync.commands
 
 import de.notjansel.datapacksync.Datapacksync
-import de.notjansel.datapacksync.versioning.VersionTypes
+import de.notjansel.datapacksync.enums.VersionTypes
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import java.io.File
-import javax.xml.crypto.Data
 
 class UpdateChannel : CommandExecutor, TabExecutor {
     override fun onTabComplete(

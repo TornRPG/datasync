@@ -3,7 +3,7 @@ package de.notjansel.datapacksync
 import de.notjansel.datapacksync.commands.*
 import de.notjansel.datapacksync.listeners.JoinListener
 import de.notjansel.datapacksync.threading.UpdateCheckerThread
-import de.notjansel.datapacksync.versioning.VersionTypes
+import de.notjansel.datapacksync.enums.VersionTypes
 import io.papermc.paper.datapack.DatapackManager
 import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
@@ -26,6 +26,7 @@ class Datapacksync : JavaPlugin() {
         getCommand("datasyncver")!!.setExecutor(Version())
         getCommand("updatechannel")!!.setExecutor(UpdateChannel())
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
+        config.addDefault("datasync.auto_check", true)
         saveDefaultConfig()
         configfile = config
         serverpath = server.worldContainer.absolutePath.replace(".", "")
@@ -33,7 +34,9 @@ class Datapacksync : JavaPlugin() {
         datapackManager = server.datapackManager
         Companion.server = server
         plugininstance = this
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
+        if (config.getBoolean("datasync.auto_check")) {
+            Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
+        }
         try {
             prepare_requisites()
         } catch (e: IOException) {
