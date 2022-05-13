@@ -10,6 +10,9 @@ import java.nio.file.Paths
 
 class UpdateCheckerThread : Runnable {
     override fun run() {
+        if (!Datapacksync.configfile.getBoolean("datasync.auto_check")) {
+            return
+        }
         try {
             Datapacksync.downloadFile("https://raw.githubusercontent.com/TornRPG/datasync/master/version.json", Datapacksync.serverpath + "/downloads/version.json")
         } catch (e: IOException) {

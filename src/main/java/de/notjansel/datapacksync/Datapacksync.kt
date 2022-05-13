@@ -4,6 +4,8 @@ import de.notjansel.datapacksync.commands.*
 import de.notjansel.datapacksync.listeners.JoinListener
 import de.notjansel.datapacksync.threading.UpdateCheckerThread
 import de.notjansel.datapacksync.enums.VersionTypes
+import de.notjansel.datapacksync.inventories.ConfigInv
+import de.notjansel.datapacksync.listeners.InventoryListener
 import io.papermc.paper.datapack.DatapackManager
 import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
@@ -20,11 +22,13 @@ class Datapacksync : JavaPlugin() {
     override fun onEnable() {
         // Plugin startup logic
         server.pluginManager.registerEvents(JoinListener(), this)
+        server.pluginManager.registerEvents(InventoryListener(), this)
         getCommand("copy")!!.setExecutor(Copy())
         getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
         getCommand("datasyncver")!!.setExecutor(Version())
         getCommand("updatechannel")!!.setExecutor(UpdateChannel())
+        getCommand("datasyncconfig")!!.setExecutor(Config())
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
         config.addDefault("datasync.auto_check", true)
         saveDefaultConfig()
@@ -34,15 +38,14 @@ class Datapacksync : JavaPlugin() {
         datapackManager = server.datapackManager
         Companion.server = server
         plugininstance = this
-        if (config.getBoolean("datasync.auto_check")) {
-            Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
-        }
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
         try {
             prepareRequisites()
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
         remorselessnessAgainstFiles()
+        ConfigInv.GetConfigInv()
     }
 
     private fun remorselessnessAgainstFiles() {
@@ -65,6 +68,7 @@ class Datapacksync : JavaPlugin() {
     }
 
     override fun onDisable() {
+        configfile.save(File(serverpath + "/plugins/Datapacksync/config.yml"))
     }
 
     companion object {
