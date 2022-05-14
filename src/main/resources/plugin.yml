@@ -16,8 +16,6 @@ commands:
     permission: datapacksync.use
   datasyncver:
     permission: datapacksync.use
-  updatechannel:
-    permission: datapacksync.use
   datasyncconfig:
     permission: datapacksync.use
 

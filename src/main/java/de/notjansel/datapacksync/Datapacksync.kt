@@ -27,7 +27,6 @@ class Datapacksync : JavaPlugin() {
         getCommand("download")!!.setExecutor(Download())
         getCommand("update")!!.setExecutor(Update())
         getCommand("datasyncver")!!.setExecutor(Version())
-        getCommand("updatechannel")!!.setExecutor(UpdateChannel())
         getCommand("datasyncconfig")!!.setExecutor(Config())
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
         config.addDefault("datasync.auto_check", true)
@@ -79,7 +78,7 @@ class Datapacksync : JavaPlugin() {
         var versiontype: VersionTypes = VersionTypes.DEVELOPMENT;
         lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
-        const val version = "0.30.4-dev"
+        const val version = "0.31.0-dev"
 
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {

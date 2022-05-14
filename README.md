@@ -13,9 +13,9 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 
 /update - Checks for Updates of the Plugin,and if there are some, immediately download the Update and replace the old version
 
-/updatechannel [channel] - Change the channel to recieve updates from, or retrieve the current channel.
-
 /datasyncver - retrieve the current version and info of the plugin.
+
+/datasyncconfig - Opens a GUI for editing the Config ingame
   
   
 ### Info
