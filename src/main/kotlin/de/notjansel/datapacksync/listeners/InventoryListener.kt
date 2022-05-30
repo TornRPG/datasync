@@ -18,7 +18,7 @@ class InventoryListener: Listener {
         if (event.clickedInventory == null) {
             return;
         }
-        if (event.clickedInventory == ConfigInv.inv || event.isShiftClick || (event.clickedInventory!!.holder as Player).openInventory.equals(ConfigInv.inv)) {
+        if (event.clickedInventory == ConfigInv.inv && (event.isShiftClick || (event.clickedInventory!!.holder as Player).openInventory.equals(ConfigInv.inv))) {
             when (event.currentItem) {
                 ConfigInv.upchecktrue -> {
                     ConfigInv.inv.setItem(event.slot, ConfigInv.upcheckfalse)

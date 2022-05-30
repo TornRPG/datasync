@@ -15,20 +15,20 @@ class DatapackThread(private val sender: CommandSender, private val args: Array<
             sender.sendMessage("Syntax: /sync <filename> <url>")
             return
         }
-        if (args[0] == "debug") {
+        if (args[1] == "debug") {
             sender.sendMessage(Datapacksync.serverpath!!)
             return
         }
-        if (args.size == 1) {
+        if (args.size == 2) {
             sender.sendMessage("No Url given, aborting...")
-            sender.sendMessage("Syntax: /sync <filename> <url>")
+            sender.sendMessage("Syntax: /datasync download <filename> <url>")
             return
         }
         try {
-            Datapacksync.downloadFile(args[1], Datapacksync.serverpath + "/downloads/" + args[0])
+            Datapacksync.downloadFile(args[2], Datapacksync.serverpath + "/downloads/" + args[1])
         } catch (e: IOException) {
             throw RuntimeException()
         }
-        sender.sendMessage("Download complete. To Copy the Datapack, type /Copy <Filename>")
+        sender.sendMessage("Download complete. To Copy the Datapack, type /datasync copy <Filename>")
     }
 }

@@ -24,8 +24,8 @@ class CopyThread(private val sender: CommandSender, private val args: Array<Stri
             }
         }
         try {
-            fis = FileInputStream(Datapacksync.serverpath + "/downloads/" + args[0])
-            fos = FileOutputStream(datapackpath + args[0])
+            fis = FileInputStream(Datapacksync.serverpath + "/downloads/" + args[1])
+            fos = FileOutputStream(datapackpath + args[1])
             var c: Int
             while (fis!!.read().also { c = it } != -1) {
                 fos!!.write(c)

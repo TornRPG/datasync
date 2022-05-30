@@ -20,14 +20,9 @@ import java.net.URL
 
 class Datapacksync : JavaPlugin() {
     override fun onEnable() {
-        // Plugin startup logic
         server.pluginManager.registerEvents(JoinListener(), this)
         server.pluginManager.registerEvents(InventoryListener(), this)
-        getCommand("copy")!!.setExecutor(Copy())
-        getCommand("download")!!.setExecutor(Download())
-        getCommand("update")!!.setExecutor(Update())
-        getCommand("datasyncver")!!.setExecutor(Version())
-        getCommand("datasyncconfig")!!.setExecutor(Config())
+        getCommand("datasync")!!.setExecutor(Datasync())
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
         config.addDefault("datasync.auto_check", true)
         saveDefaultConfig()

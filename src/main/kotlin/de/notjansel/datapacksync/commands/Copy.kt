@@ -17,9 +17,9 @@ class Copy : CommandExecutor, TabCompleter {
 
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<String>): List<String>? {
         val tabComplete: MutableList<String> = ArrayList()
-        if (args.size == 1) {
+        if (args.size == 2) {
             val directoryPath = File(Datapacksync.serverpath + "/downloads/")
-            for (filename in directoryPath.list()) {
+            for (filename in directoryPath.list()!!) {
                 tabComplete.add(filename)
             }
         }

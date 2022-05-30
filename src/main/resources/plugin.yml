@@ -8,15 +8,7 @@ description: Update Datapacks per Command!
 website: https://github.com/TornRPG/datasync
 
 commands:
-  download:
-    permission: datapacksync.use
-  copy:
-    permission: datapacksync.use
-  update:
-    permission: datapacksync.use
-  datasyncver:
-    permission: datapacksync.use
-  datasyncconfig:
+   datasync:
     permission: datapacksync.use
 
 permissions:
