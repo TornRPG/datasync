@@ -2,9 +2,9 @@
   "latest": "0.30.3",
   "changelog": "Refactor everything to Kotlin (no change in the code itself)",
   "beta": {
-    "latest": null,
-    "changelog": null,
-    "release_instead": true
+    "latest": "0.31.0-beta1",
+    "changelog": "Did alot under the hood, especially moving all discrete command to one command as sub commands.",
+    "release_instead": false
   },
   "release_candidate": {
     "latest": null,
@@ -14,5 +14,6 @@
   "release": {
     "latest": "0.30.3",
     "changelog": "Refactor everything to Kotlin (no change in the code itself)"
-  }
+  },
+  "inherit": true
 }
