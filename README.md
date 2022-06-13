@@ -7,15 +7,17 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 
 ## Commands
 
-/copy - Copies the downloaded Datapack File to the Datapack Folder. (The Filename stays, so if you update, USE THE SAME FILENAME AS PREVIOUSLY)
+/datasync < command > - Main Command with all old Commands (see below)
 
-/sync <Filename> <URL> - Downloads the Datapack to the Filename from the URL.
+/datasync download < link > - Download a Datapack from the Link
 
-/update - Checks for Updates of the Plugin,and if there are some, immediately download the Update and replace the old version
+/datasync copy < link > - Copy a Datapack from the Download Directory into the Datapack Directory
 
-/datasyncver - retrieve the current version and info of the plugin.
+/datasync update - Update the Datasync Plugin
 
-/datasyncconfig - Opens a GUI for editing the Config ingame
+/datasync version - Show the Version of the Datasync Plugin
+
+/datasync config - Show the Config of the Datasync Plugin
   
   
 ### Info

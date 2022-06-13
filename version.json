@@ -1,10 +1,10 @@
 {
-  "latest": "0.30.3",
-  "changelog": "Refactor everything to Kotlin (no change in the code itself)",
+  "latest": "0.31.0",
+  "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command",
   "beta": {
-    "latest": "0.31.0-beta1",
-    "changelog": "Did alot under the hood, especially moving all discrete command to one command as sub commands.",
-    "release_instead": false
+    "latest": null,
+    "changelog": null,
+    "release_instead": true
   },
   "release_candidate": {
     "latest": null,
@@ -12,8 +12,8 @@
     "release_instead": true
   },
   "release": {
-    "latest": "0.30.3",
-    "changelog": "Refactor everything to Kotlin (no change in the code itself)"
+    "latest": "0.31.0",
+    "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command. (If you are on 0.30.1 or lower, this is the last version to support the old version string)"
   },
   "inherit": true
 }
