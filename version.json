@@ -1,6 +1,6 @@
 {
   "latest": "0.31.0",
-  "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command",
+  "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command (If you are on 0.30.1 or lower, this is the last version to support the old version string)",
   "beta": {
     "latest": null,
     "changelog": null,
@@ -13,7 +13,7 @@
   },
   "release": {
     "latest": "0.31.0",
-    "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command. (If you are on 0.30.1 or lower, this is the last version to support the old version string)"
+    "changelog": "Update to 1.19 (DO NOT UPDATE THE PLUGIN IF YOUR SERVER IS ON 1.18.2), also moved all commands into one command."
   },
   "inherit": true
 }
