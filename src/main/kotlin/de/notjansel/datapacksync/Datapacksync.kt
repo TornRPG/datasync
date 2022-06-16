@@ -67,10 +67,10 @@ class Datapacksync : JavaPlugin() {
         var serverpath: String? = null
         var worlds: List<World>? = null
         var server: Server? = null
-        var versiontype: VersionTypes = VersionTypes.RELEASE;
+        var versiontype: VersionTypes = VersionTypes.RELEASE_CANDIDATE;
         lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
-        const val version = "0.31.0"
+        const val version = "0.31.1-rc1"
 
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {

@@ -6,7 +6,8 @@
 
     <groupId>de.notjansel</groupId>
     <artifactId>datapacksync</artifactId>
-    <version>0.31.0</version>
+    <version>0.31.1-rc1</version>
+
     <packaging>jar</packaging>
 
     <name>Datapacksync</name>
@@ -16,6 +17,7 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.7.0</kotlin.version>
+        <api-version>1.19</api-version>
     </properties>
     <url>https://www.notjansel.de</url>
 
@@ -122,7 +124,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.19-R0.1-SNAPSHOT</version>
+            <version>${api-version}-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
