@@ -6,7 +6,6 @@ import de.notjansel.datapacksync.threading.UpdateCheckerThread
 import de.notjansel.datapacksync.enums.VersionTypes
 import de.notjansel.datapacksync.inventories.ConfigInv
 import de.notjansel.datapacksync.listeners.InventoryListener
-import io.papermc.paper.datapack.DatapackManager
 import org.apache.commons.io.FileUtils
 import org.bukkit.Bukkit
 import org.bukkit.Server
@@ -29,7 +28,6 @@ class Datapacksync : JavaPlugin() {
         configfile = config
         serverpath = server.worldContainer.absolutePath.replace(".", "")
         worlds = server.worlds
-        datapackManager = server.datapackManager
         Companion.server = server
         plugininstance = this
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, UpdateCheckerThread(), 1200, 18000)
@@ -68,7 +66,6 @@ class Datapacksync : JavaPlugin() {
     companion object {
         var serverpath: String? = null
         var worlds: List<World>? = null
-        var datapackManager: DatapackManager? = null
         var server: Server? = null
         var versiontype: VersionTypes = VersionTypes.RELEASE;
         lateinit var configfile: FileConfiguration
