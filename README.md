@@ -5,6 +5,8 @@ Housemade by myself to make the Datapack Development easier for servers!
 Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](https://github.com/StonkDragon) doesnt want always to DM a Admin with FTP Access lmao)
 
 
+**Attention**: This Repository will be archived on July 1st. Any Development will be then made on my own [Profile](https://github.com/NotJansel)
+
 ## Commands
 
 /datasync < command > - Main Command with all old Commands (see below)
