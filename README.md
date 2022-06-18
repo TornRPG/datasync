@@ -22,3 +22,12 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
   
 ### Info
   This Project is licensed under the LGPL-3.0 License.
+
+### Version Info
+- Version 0.30.3 was the last version to support 1.18.2 natively. There is a archive branch.
+- Version 0.31.x will support 1.19 entirely.
+- Version 0.32.x will support 1.19.1 entirely.
+- Version 0.33+ will support any 1.19.x Version entirely.
+- Version 0.40+ will support 1.20.x
+
+Each Version Bump will recieve a archive branch.
