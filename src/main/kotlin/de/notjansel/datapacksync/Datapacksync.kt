@@ -31,7 +31,7 @@ class Datapacksync : JavaPlugin() {
         version = description.version
         mcversion = server.minecraftVersion
         configfile = config
-        serverpath = server.worldContainer.absolutePath.replace(".", "")
+        serverpath = removeSuffix(server.worldContainer.absolutePath, ".")
         worlds = server.worlds
         Companion.server = server
         plugininstance = this
@@ -85,6 +85,12 @@ class Datapacksync : JavaPlugin() {
             val file = File(path)
             val fetchsite = URL(url)
             FileUtils.copyURLToFile(fetchsite, file)
+        }
+
+        fun removeSuffix(s: String?, suffix: String?): String? {
+            return if (s != null && suffix != null && s.endsWith(suffix)) {
+                s.substring(0, s.length - suffix.length)
+            } else s
         }
     }
 }

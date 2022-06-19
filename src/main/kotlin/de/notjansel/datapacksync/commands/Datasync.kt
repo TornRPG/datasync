@@ -20,6 +20,7 @@ class Datasync: CommandExecutor, TabExecutor {
             tabComplete.add("config")
             tabComplete.add("version")
             tabComplete.add("update")
+            tabComplete.add("debug")
             return tabComplete
         }
         return null
@@ -37,6 +38,7 @@ class Datasync: CommandExecutor, TabExecutor {
                 "config" -> {return Config().onCommand(sender, command, label, args)}
                 "version" -> {return Version().onCommand(sender, command, label, args)}
                 "update" -> { return Update().onCommand(sender, command, label, args)}
+                "debug" -> {return Debug().onCommand(sender, command, label, args)}
             }
             return true
         }

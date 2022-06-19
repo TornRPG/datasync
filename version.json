@@ -7,8 +7,8 @@
     "release_instead": true
   },
   "release_candidate": {
-    "latest": "0.31.1-rc2",
-    "changelog": "added the mc version in the version command",
+    "latest": "0.31.1-rc3",
+    "changelog": "dude why tf did the join listener print an error, it was just gson being stupid",
     "release_instead": false
   },
   "release": {

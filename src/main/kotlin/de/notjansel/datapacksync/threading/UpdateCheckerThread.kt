@@ -68,7 +68,8 @@ class UpdateCheckerThread : Runnable {
             throw RuntimeException(e)
         }
         val version = obj["release_candidate.latest"]
-        if (version.asString != Datapacksync.version) {
+        val releaseinstead = obj["release_candidate.release_instead"].asBoolean
+        if (version.asString != Datapacksync.version && !releaseinstead) {
             try {
                 Datapacksync.downloadFile(
                     "https://github.com/TornRPG/datasync/releases/download/$version/datapacksync-$version.jar",
@@ -79,6 +80,7 @@ class UpdateCheckerThread : Runnable {
             }
             return;
         } else {
+
         }
     }
 

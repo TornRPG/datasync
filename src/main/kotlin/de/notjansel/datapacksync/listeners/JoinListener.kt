@@ -33,16 +33,16 @@ class JoinListener : Listener {
             lateinit var changelog: String;
             when (Datapacksync.configfile.get("datasync.update_channel")) {
                 VersionTypes.RELEASE.name -> {
-                    version = obj.get("release.latest").asString
-                    changelog = obj.get("release.changelog").asString
+                    version = obj.get("release").asJsonObject.get("latest").asString
+                    changelog = obj.get("release").asJsonObject.get("changelog").asString
                 }
                 VersionTypes.BETA.name -> {
-                    version = obj.get("beta.latest").asString
-                    changelog = obj.get("beta.changelog").asString
+                    version = obj.get("beta").asJsonObject.get("latest").asString
+                    changelog = obj.get("beta").asJsonObject.get("changelog").asString
                 }
                 VersionTypes.RELEASE_CANDIDATE.name -> {
-                    version = obj.get("release_candidate.latest").toString()
-                    changelog = obj.get("release_candidate.changelog").toString()
+                    version = obj.get("release_candidate").asJsonObject.get("latest").asString
+                    changelog = obj.get("release_candidate").asJsonObject.get("changelog").asString
                 }
             }
             if (Datapacksync.version.endsWith("-dev")) {
