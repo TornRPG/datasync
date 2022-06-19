@@ -1,5 +1,6 @@
 package de.notjansel.datapacksync
 
+import com.destroystokyo.paper.util.VersionFetcher
 import de.notjansel.datapacksync.commands.*
 import de.notjansel.datapacksync.listeners.JoinListener
 import de.notjansel.datapacksync.threading.UpdateCheckerThread
@@ -12,9 +13,11 @@ import org.bukkit.Server
 import org.bukkit.World
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.Plugin
+import org.bukkit.plugin.PluginDescriptionFile
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.io.IOException
+import java.lang.reflect.TypeVariable
 import java.net.URL
 
 class Datapacksync : JavaPlugin() {
@@ -25,6 +28,8 @@ class Datapacksync : JavaPlugin() {
         config.addDefault("datasync.update_channel", VersionTypes.RELEASE)
         config.addDefault("datasync.auto_check", true)
         saveDefaultConfig()
+        version = description.version
+        mcversion = server.minecraftVersion
         configfile = config
         serverpath = server.worldContainer.absolutePath.replace(".", "")
         worlds = server.worlds
@@ -41,7 +46,7 @@ class Datapacksync : JavaPlugin() {
     }
 
     private fun remorselessnessAgainstFiles() {
-        for (file in File(serverpath + "/plugins").listFiles()!!) {
+        for (file in File(serverpath + "/plugins").listFiles()) {
             if (file.name.contains("datapacksync")) {
                 if (!file.name.contains(version)) {
                     file.delete()
@@ -70,7 +75,10 @@ class Datapacksync : JavaPlugin() {
         var versiontype: VersionTypes = VersionTypes.RELEASE_CANDIDATE;
         lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
-        const val version = "0.31.1-rc1"
+        lateinit var mcversion: String
+        lateinit var version: String
+
+
 
         @Throws(IOException::class)
         fun downloadFile(url: String?, path: String?) {

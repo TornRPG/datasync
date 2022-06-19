@@ -3,6 +3,7 @@ package de.notjansel.datapacksync.listeners
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import de.notjansel.datapacksync.Datapacksync
+import de.notjansel.datapacksync.enums.VersionTypes
 import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -28,8 +29,22 @@ class JoinListener : Listener {
             } catch (e: IOException) {
                 throw RuntimeException(e)
             }
-            val version = obj["latest"].asString
-            val changelog = obj["changelog"].asString
+            lateinit var version: String;
+            lateinit var changelog: String;
+            when (Datapacksync.configfile.get("datasync.update_channel")) {
+                VersionTypes.RELEASE.name -> {
+                    version = obj.get("release.latest").asString
+                    changelog = obj.get("release.changelog").asString
+                }
+                VersionTypes.BETA.name -> {
+                    version = obj.get("beta.latest").asString
+                    changelog = obj.get("beta.changelog").asString
+                }
+                VersionTypes.RELEASE_CANDIDATE.name -> {
+                    version = obj.get("release_candidate.latest").toString()
+                    changelog = obj.get("release_candidate.changelog").toString()
+                }
+            }
             if (Datapacksync.version.endsWith("-dev")) {
                 event.player.sendMessage(ChatColor.AQUA.toString() + "You are running a development version of Datapacksync. Please run a Stable version to get Support. Current Stable Release: $version")
                 return;
