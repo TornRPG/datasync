@@ -19,8 +19,10 @@ class Debug : CommandExecutor, TabExecutor {
         p2: String,
         p3: Array<out String>?
     ): MutableList<String>? {
-        if (p3 != null) {
-            if (p3.size == 2) {
+        var arglist = p3?.toMutableList()
+        arglist?.removeAt(0)
+        if (arglist != null) {
+            if (arglist.size == 1) {
                 val tabComplete: MutableList<String> = ArrayList()
                 tabComplete.add("version")
                 tabComplete.add("plugin")
