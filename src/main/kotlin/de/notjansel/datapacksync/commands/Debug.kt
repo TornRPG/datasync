@@ -19,7 +19,7 @@ class Debug : CommandExecutor, TabExecutor {
         p2: String,
         p3: Array<out String>?
     ): MutableList<String>? {
-        var arglist = p3?.toMutableList()
+        val arglist = p3?.toMutableList()
         arglist?.removeAt(0)
         if (arglist != null) {
             if (arglist.size == 1) {
@@ -46,7 +46,7 @@ class Debug : CommandExecutor, TabExecutor {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        var arglist = args.toMutableList()
+        val arglist = args.toMutableList()
         arglist.removeAt(0)
         when (arglist[0]) {
             "version" -> {
@@ -74,6 +74,6 @@ class Debug : CommandExecutor, TabExecutor {
                 sender.sendMessage("${ChatColor.RED}Latest Beta Changelog: ${ChatColor.YELLOW}${obj.get("beta").asJsonObject.get("changelog").asString}")
             }
         }
-        return true;
+        return true
     }
 }
