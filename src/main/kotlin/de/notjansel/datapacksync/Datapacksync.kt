@@ -72,7 +72,7 @@ class Datapacksync : JavaPlugin() {
         var serverpath: String? = null
         var worlds: List<World>? = null
         var server: Server? = null
-        var versiontype: VersionTypes = VersionTypes.RELEASE_CANDIDATE;
+        var versiontype: VersionTypes = VersionTypes.DEVELOPMENT;
         lateinit var configfile: FileConfiguration
         lateinit var plugininstance: Plugin
         lateinit var mcversion: String

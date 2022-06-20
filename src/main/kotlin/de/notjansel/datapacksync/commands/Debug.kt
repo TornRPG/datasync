@@ -66,7 +66,12 @@ class Debug : CommandExecutor, TabExecutor {
             }
             "versionfile" -> {
                 sender.sendMessage("Version File:")
-                sender.sendMessage("${ChatColor.RED}Latest Release: ${obj.get("release").asJsonObject.get("latest").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Release: ${ChatColor.GREEN}${obj.get("release").asJsonObject.get("latest").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Release Changelog: ${ChatColor.YELLOW}${obj.get("release").asJsonObject.get("changelog").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Release Candidate: ${ChatColor.GREEN}${obj.get("release_candidate").asJsonObject.get("latest").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Release Candidate Changelog: ${ChatColor.YELLOW}${obj.get("release_candidate").asJsonObject.get("changelog").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Beta: ${ChatColor.GREEN}${obj.get("beta").asJsonObject.get("latest").asString}")
+                sender.sendMessage("${ChatColor.RED}Latest Beta Changelog: ${ChatColor.YELLOW}${obj.get("beta").asJsonObject.get("changelog").asString}")
             }
         }
         return true;

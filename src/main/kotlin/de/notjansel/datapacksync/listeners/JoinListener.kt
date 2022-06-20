@@ -46,7 +46,7 @@ class JoinListener : Listener {
                 }
             }
             if (Datapacksync.version.endsWith("-dev")) {
-                event.player.sendMessage(ChatColor.AQUA.toString() + "You are running a development version of Datapacksync. Please run a Stable version to get Support. Current Stable Release: $version")
+                event.player.sendMessage(ChatColor.AQUA.toString() + "You are running a development version of Datapacksync. Please run a Stable version to get Support. Current Stable Release: ${obj.get("release").asJsonObject.get("latest").asString}")
                 return;
             }
             if (version != Datapacksync.version && !Datapacksync.version.endsWith("-dev")) {
