@@ -7,6 +7,8 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 
 **Attention**: This Repository will be archived on July 1st. Any Development will be then made on my own [Profile](https://github.com/NotJansel), but on each version bump, the repositories will be merged.
 
+**Attention no. 2**: Due to the 1.19.1 releasing in foreseeable june 28th, 0.31 will be archived on release date, and development immediately moved to my personal github.
+
 ## Commands
 
 /datasync < command > - Main Command with all old Commands (see below)
