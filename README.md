@@ -6,7 +6,7 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 
 Planned features: [click here](https://github.com/TornRPG/datasync/blob/master/planned_features.md)
 
-**Attention**: This Repository is now inactive. Any Development will be then made in this [repository](https://github.com/NotJansel/datasync), but on each version bump, the source code will be pull-requested [here](https://github.com/tornrpg/datasync).
+**Attention**: This Repository is now inactive. Any Development will be then made in this [repository](https://github.com/NotJansel/palladium) as it will be a full rewrite. I will make one last update to this on 1.19.1 with the information.
 
 ## Commands
 
