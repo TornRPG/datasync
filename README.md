@@ -5,9 +5,7 @@ Housemade by myself to make the Datapack Development easier for servers!
 Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](https://github.com/StonkDragon) doesnt want always to DM a Admin with FTP Access lmao)
 
 
-**Attention**: This Repository will be archived on July 1st. Any Development will be then made on my own [Profile](https://github.com/NotJansel), but on each version bump, the repositories will be merged.
-
-**Attention no. 2**: Due to the 1.19.1 releasing in foreseeable june 28th, 0.31 will be archived on release date, and development immediately moved to my personal github.
+**Attention**: This Repository is now inactive. Any Development will be then made on my own [Profile](https://github.com/NotJansel), but on each version bump, the source code will be pull-requested here.
 
 ## Commands
 
@@ -29,9 +27,11 @@ Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](h
 
 ### Version Info
 - Version 0.30.3 was the last version to support 1.18.2 natively. There is a archive branch.
-- Version 0.31.x will support 1.19 entirely.
-- Version 0.32.x will support 1.19.1 entirely.
+- Version 0.31.0 was the last version to support 1.19.0 natively. There is a archive branch.
+- Version 0.32.x will support 1.19.1 entirely. **Current Development Version**
 - Version 0.33+ will support any 1.19.x Version entirely.
 - Version 0.40+ will support 1.20.x
+
+*any 0.3x.x version CAN work on 1.19.0/1.19.1, but support is only given in special cases*
 
 Each Version Bump will recieve a archive branch.
