@@ -4,7 +4,7 @@ Download Datapacks per Link and copy them directly into the Datapack Directory
 Housemade by myself to make the Datapack Development easier for servers!
 Also used on the MCTorn Server for easier Datapack Development ([@StonkDragon](https://github.com/StonkDragon) doesnt want always to DM a Admin with FTP Access lmao)
 
-Planned features: [click here](https://github.com/tornrpg/datasync/planned_features.md)
+Planned features: [click here](https://github.com/TornRPG/datasync/blob/master/planned_features.md)
 
 **Attention**: This Repository is now inactive. Any Development will be then made on my own [Profile](https://github.com/NotJansel), but on each version bump, the source code will be pull-requested here.
 
